@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChessKrot
 {
-    class NotifyPropertyChanged : INotifyPropertyChanged
+   public class NotifyPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

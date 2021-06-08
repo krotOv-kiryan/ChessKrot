@@ -9,7 +9,6 @@ namespace ChessKrot
     {
         private Table _board = new Table();
       
-
         private void SetupTable()
         {
             Table table = new Table();

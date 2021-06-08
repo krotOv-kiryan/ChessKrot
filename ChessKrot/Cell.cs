@@ -8,15 +8,15 @@ namespace ChessKrot
 {
     public class Cell : NotifyPropertyChanged
     {
-        private State _state;
+        private Types _types;
         private bool _active;
 
-        public State State
+        public Types Types
         {
-            get => _state;
+            get => _types;
             set
             {
-                _state = value;
+                _types = value;
                 OnPropertyChanged(); // если значение поменялось, то сообщаем интерфейсу, чтобы он перерисовался в этом месте
             }
         }

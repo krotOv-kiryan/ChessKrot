@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,8 @@ namespace ChessKrot
 
     public Types this[int row, int column]
     {
-        get => _area[row, column].State;
-        set => _area[row, column].State = value;
+        get => _area[row, column].Types;
+        set => _area[row, column].Types = value;
     }
 
     public Table()
