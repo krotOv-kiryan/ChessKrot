@@ -83,13 +83,14 @@ namespace ChessKrot
             allFigures.Add(new Figure(Types.WPawn, true, new Point { X = 7, Y = 1 }));
             //
 
-
             foreach (var f in allFigures)
             {
                 UpdateCanvasPosition(f);
                 f.Control.MouseLeftButtonDown += Control_MouseLeftButtonDown;
                 f.Control.Tag = f;
                 BoardChess.Children.Add(f.Control);
+
+               
             }
         }
 
@@ -101,6 +102,7 @@ namespace ChessKrot
             int yId = (int)point.Y / 72;
 
             Move(xId, yId);
+
         }
 
         void Move(int x, int y)
@@ -110,6 +112,10 @@ namespace ChessKrot
             selected.TablePosition = new Point { X = x, Y = y };
             UpdateCanvasPosition(selected);
             
+            
+
+
+
             selected = null;// оннулирование любой выбранной фигуры при ходе.
            
         }
@@ -129,18 +135,10 @@ namespace ChessKrot
                 return;
             Figure f = (Figure)img.Tag;
             selected = f;
-          //MessageBox.Show(f.Type.ToString());
+            //MessageBox.Show(f.Type.ToString());
             e.Handled = true; // прерывает передачу клика дальнейшим компонентам (канвасу под картинкой)
+
             
-            if (e.Handled == f.Black)
-            {
-                e.Handled = true;
-                if(e.Handled = true)
-                {
-                    f.Black = false;
-                    e.Handled = true;
-                }
-            }
         }
 
         

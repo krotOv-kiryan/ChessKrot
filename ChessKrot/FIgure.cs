@@ -44,7 +44,6 @@ namespace ChessKrot
                 case Types.WKnight: path += "/Images/wknight.png"; break;
                 case Types.WPawn: path += "/Images/wpawn.png"; break;
                 case Types.WBishop: path += "/Images/wbishop.png"; break;
-
             }
             Control.Width = 72;
             Control.Height = 72;
