@@ -10,18 +10,18 @@ namespace ChessKrot
     {
         Empty,
 
-        BlackKing,
-        BlackQueen,
-        BlackRook,
-        BlackKnight,
-        BlackBishop,
-        BlackPawn,
+        BKing,
+        BQueen,
+        BRook,
+        BKnight,
+        BBishop,
+        BPawn,
 
-        WhiteKing,
-        WhiteQueen,
-        WhiteRook,
-        WhiteKnight,
-        WhiteBishop,
-        WhitePawn
+        WKing,
+        WQueen,
+        WRook,
+        WKnight,
+        WBishop,
+        WPawn
     }
 }
