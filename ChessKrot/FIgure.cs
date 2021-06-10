@@ -16,7 +16,7 @@ namespace ChessKrot
 
         public Point TablePosition { get; set; }
         public Types Type { get; set; }
-        public bool Black { get; set; }
+        public bool Black { get; set; } = false;
 
         public System.Windows.Controls.Image Control { get; set; } 
             = new System.Windows.Controls.Image();
@@ -44,12 +44,16 @@ namespace ChessKrot
                 case Types.WKnight: path += "/Images/wknight.png"; break;
                 case Types.WPawn: path += "/Images/wpawn.png"; break;
                 case Types.WBishop: path += "/Images/wbishop.png"; break;
+
+                case Types.Empty: break;
+
+                default: break;
             }
             Control.Width = 72;
             Control.Height = 72;
             Control.Stretch = Stretch.Uniform;
             Control.Source = new BitmapImage(new Uri(path));
-            
+
         }
     }
 }

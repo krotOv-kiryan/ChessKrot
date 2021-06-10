@@ -23,15 +23,19 @@ namespace ChessKrot
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        Figure figure;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow()
         {
+            
+            
             InitializeComponent();
-
+            
             DataContext = new MainVM();
 
             BoardChess.MouseLeftButtonDown += canvasClick;
+            
 
             List<Figure> allFigures = new List<Figure>();
             //
@@ -87,17 +91,16 @@ namespace ChessKrot
             {
                 UpdateCanvasPosition(f);
                 f.Control.MouseLeftButtonDown += Control_MouseLeftButtonDown;
-                f.Control.Tag = f;
+                f.Control.Tag = f;//.Control.Focusable
                 BoardChess.Children.Add(f.Control);
-
-               
+                
             }
         }
-
+         
         private void canvasClick(object sender, MouseButtonEventArgs e)
         {
             var point = e.GetPosition((Canvas)sender);
-
+           
             int xId = (int)point.X / 72;
             int yId = (int)point.Y / 72;
 
@@ -107,17 +110,13 @@ namespace ChessKrot
 
         void Move(int x, int y)
         {
-            if (selected == null)
-                return;
+            if (selected == null) return;
+
             selected.TablePosition = new Point { X = x, Y = y };
             UpdateCanvasPosition(selected);
+            //прописать  условие.если black = true, когда ходят black = false, то есть можно только true. 
             
-            
-
-
-
             selected = null;// оннулирование любой выбранной фигуры при ходе.
-           
         }
 
         private void UpdateCanvasPosition(Figure f)
@@ -135,6 +134,7 @@ namespace ChessKrot
                 return;
             Figure f = (Figure)img.Tag;
             selected = f;
+           
             //MessageBox.Show(f.Type.ToString());
             e.Handled = true; // прерывает передачу клика дальнейшим компонентам (канвасу под картинкой)
 
