@@ -25,17 +25,17 @@ namespace ChessKrot
     {
         Figure figure;
         public event PropertyChangedEventHandler PropertyChanged;
-
+        
         public MainWindow()
         {
-            
-            
+           // selected.Black = true;
+            selected.Black = false;
             InitializeComponent();
             
             DataContext = new MainVM();
-
-            BoardChess.MouseLeftButtonDown += canvasClick;
             
+            BoardChess.MouseLeftButtonDown += canvasClick;
+            BoardChess.MouseDown += canvasDown;
 
             List<Figure> allFigures = new List<Figure>();
             //
@@ -91,12 +91,43 @@ namespace ChessKrot
             {
                 UpdateCanvasPosition(f);
                 f.Control.MouseLeftButtonDown += Control_MouseLeftButtonDown;
+                f.Control.MouseDown += Control_MouseDown;
                 f.Control.Tag = f;//.Control.Focusable
                 BoardChess.Children.Add(f.Control);
                 
             }
         }
-         
+        private void Control_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Image img = sender as Image;
+
+            if ( selected.Black == true)
+                return;
+            Figure f = (Figure)img.Tag;
+            selected = f;
+
+            //MessageBox.Show(f.Type.ToString());
+            e.Handled = true; // прерывает передачу клика дальнейшим компонентам (канвасу под картинкой)
+
+
+        }
+
+        private void canvasDown(object sender, MouseButtonEventArgs e)
+        {
+            var point = e.GetPosition((Canvas)sender);
+            int xId = (int)point.X / 72;
+            int yId = (int)point.Y / 72;
+            Click(xId, yId);
+        }
+
+        void Click(int x, int y)
+        {
+            if (selected.Black == true )
+            {
+                //прописать  условие.если black = true, когда ходят black = false, то есть можно только true. 
+            }
+        }
+
         private void canvasClick(object sender, MouseButtonEventArgs e)
         {
             var point = e.GetPosition((Canvas)sender);
@@ -105,7 +136,7 @@ namespace ChessKrot
             int yId = (int)point.Y / 72;
 
             Move(xId, yId);
-
+           // selected.Black = true;
         }
 
         void Move(int x, int y)
@@ -114,7 +145,7 @@ namespace ChessKrot
 
             selected.TablePosition = new Point { X = x, Y = y };
             UpdateCanvasPosition(selected);
-            //прописать  условие.если black = true, когда ходят black = false, то есть можно только true. 
+           //прописать видимость значений true/false.
             
             selected = null;// оннулирование любой выбранной фигуры при ходе.
         }
@@ -137,8 +168,8 @@ namespace ChessKrot
            
             //MessageBox.Show(f.Type.ToString());
             e.Handled = true; // прерывает передачу клика дальнейшим компонентам (канвасу под картинкой)
-
-            
+          //  if(selected.Black)
+            //прописать условие проверки противоположного цвета.(и замена одного image другим( с последующим удалением)
         }
 
         
